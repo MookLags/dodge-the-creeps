@@ -14,13 +14,13 @@ func game_over():
 	$DeathSound.play()
 
 func new_game():
-	get_tree().call_group("mobs", "queue_free")
-	$Music.play()
 	score = 0
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	get_tree().call_group("mobs", "queue_free")
+	$Music.play()
 
 func _on_MobTimer_timeout():
 	var mob = mob_scene.instance()
@@ -47,3 +47,9 @@ func _on_ScoreTimer_timeout():
 func _on_StartTimer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+
+func _on_Player_hit():
+	game_over()
+
+func _on_HUD_start_game():
+	new_game()
