@@ -7,6 +7,7 @@ var screen_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide()
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
@@ -37,9 +38,6 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-
-	hide()
-
 
 func _on_Player_body_entered(body):
 	hide()
